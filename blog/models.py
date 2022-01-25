@@ -9,3 +9,5 @@ class post(models.Model):
     creted_date = models.DateField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(null=True)
+    def __str__(self):
+        return self.title
