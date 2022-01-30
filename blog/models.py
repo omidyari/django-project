@@ -9,5 +9,11 @@ class post(models.Model):
     creted_date = models.DateField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(null=True)
+    class Meta:
+        ordering = ['-creted_date']
+        verbose_name = 'option'
+        verbose_name_plural = 'options'
     def __str__(self):
         return self.title
+
+
