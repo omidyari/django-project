@@ -11,8 +11,6 @@ class post(models.Model):
     published_date = models.DateTimeField(null=True)
     class Meta:
         ordering = ['-creted_date']
-        verbose_name = 'option'
-        verbose_name_plural = 'options'
     def __str__(self):
         return self.title
 
