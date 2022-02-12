@@ -62,11 +62,7 @@
 				        <ul class="nav-menu">
 				          <li><a href="{% url 'Napp:index' %}">Home</a></li>
 				          <li><a href="{% url 'Napp:about' %}">About</a></li>
-				          <li class="menu-has-children"><a href="">Blog</a>
-				            <ul>
 				              <li><a href="{% url 'blog:blog_home' %}">Blog Home</a></li>
-				              <li><a href="{% url 'blog:blog_single' %}">Blog Single</a></li>
-				            </ul>
 				          </li>	
 				          <li class="menu-has-children"><a href="">Pages</a>
 				            <ul>
@@ -190,7 +186,7 @@
 									<div class="feature-img">
 										<img class="img-fluid" src="{% static 'img/blog/feature-img1.jpg' %}" alt="">
 									</div>
-									<a class="posts-title" href="#"><h3> {{ post.title }} </h3></a>
+									<a class="posts-title" href="{% url 'blog:blog_single' pid=post.id %}"><h3> {{ post.title }} </h3></a>
 									<p class="excert"> 
 										{{ post.text }}
 									</p>
