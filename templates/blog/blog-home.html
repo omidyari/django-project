@@ -171,7 +171,9 @@
 							<div class="single-post row">
 								<div class="col-lg-3  col-md-3 meta-details">
 									<ul class="tags">
-										{{ post.category.all|join:", "}}
+										{% for cato in post.category.all %}
+										<li><a href="{% url 'blog:category' cat=cato.name %}">{{ cato.name }}</a> {% if not forloop.last %},{% endif %} </li>
+										{% endfor %}
 									</ul>
 									<div class="user-details row">
 										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{ post.escriber }}</a> <span class="lnr lnr-user"></span></p>

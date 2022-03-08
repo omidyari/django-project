@@ -4,10 +4,12 @@ from blog.models import post
 from datetime import date
 
 # Create your views here.
-def blog_home(request):
+def blog_home(request,cat=None):
     stat_date = date(2020, 1, 1)
     end_date = date.today()
     posts = post.objects.filter(creted_date__range=(stat_date, end_date))
+    if cat:
+        posts = posts.filter(category__name=cat)
     #pagination
     #paginator = Paginator(posts, 3)
     #page = request.GET.get('page')
