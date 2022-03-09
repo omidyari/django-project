@@ -4,12 +4,14 @@ from blog.models import post
 from datetime import date
 
 # Create your views here.
-def blog_home(request,cat=None):
+def blog_home(request,**kwargs):
     stat_date = date(2020, 1, 1)
     end_date = date.today()
     posts = post.objects.filter(creted_date__range=(stat_date, end_date))
-    if cat:
-        posts = posts.filter(category__name=cat)
+    if kwargs.get('cat') != None:
+        posts = posts.filter(category__name=kwargs['cat'])
+    if kwargs.get('user_n') != None:
+        posts = posts.filter(escriber__username=kwargs['user_n'])
     #pagination
     #paginator = Paginator(posts, 3)
     #page = request.GET.get('page')
@@ -27,3 +29,11 @@ def blog_single(request, pid):
 
 def test(request):
     return render(request,'test.html')
+
+def blog_search(request):
+    posts = post.objects.filter(status=1)
+    if request.method == 'GET':
+        if s:= request.GET.get('s'):
+            posts = posts.filter(text__contains=s)
+    context = {'posts':posts}
+    return render(request,'blog/blog-home.html', context)
